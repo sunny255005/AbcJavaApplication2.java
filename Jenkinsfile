@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-        registryCredential = 'docker_nexus'
+        registryCredential = 'docker_hub_creds'
         GIT_REPO_NAME = GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1') 
         dockerImg = ""
         STAGING_BRANCH = "staging"
@@ -35,8 +35,8 @@ pipeline {
                 echo GIT_REPO_NAME
                 echo ecr_registry
                 script {
-                    docker.withRegistry( 'https://115.112.75.210:5006', registryCredential ) {
-                        dockerImg =  docker.build("${GIT_REPO_NAME}:${GIT_COMMIT}", "./") 
+                    docker.withRegistry( 'https://hub.docker.com/', registryCredential ) {
+                        dockerImg =  docker.build("${GIT_REPO_NAME}:${GIT_COMMIT}:${BUILD_NUMBER}", "./") 
                     }
                 }
             }
