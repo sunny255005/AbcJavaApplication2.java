@@ -35,7 +35,7 @@ pipeline {
                 echo GIT_REPO_NAME
               
                 script {
-                    docker.withRegistry( 'https://hub.docker.com', registryCredential ) {
+                    docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ) {
                         dockerImg =  docker.build("${GIT_REPO_NAME}:${GIT_COMMIT}:${BUILD_NUMBER}", "./") 
                     }
                 }
