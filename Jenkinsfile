@@ -33,7 +33,7 @@ pipeline {
                 sh 'ls'
                 echo GIT_COMMIT
                 echo GIT_REPO_NAME
-                echo ecr_registry
+              
                 script {
                     docker.withRegistry( 'https://hub.docker.com/', registryCredential ) {
                         dockerImg =  docker.build("${GIT_REPO_NAME}:${GIT_COMMIT}:${BUILD_NUMBER}", "./") 
