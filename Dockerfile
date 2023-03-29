@@ -1,7 +1,7 @@
 FROM openjdk:8  
 RUN file="$(pwd)" && echo $file
 RUN file="$(ls -al)" && echo $file
-COPY . /var/www/java  
-WORKDIR /var/www/java  
+COPY . /opt/hi  
+WORKDIR /opt/hi  
 RUN javac FirstJava.java  
 CMD ["java", "FirstJava"]  
